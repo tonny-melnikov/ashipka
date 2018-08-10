@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .col-xs-12#mainimg
+    img.center-block(src="/images/bg.jpg" atl="картиночка")
+  script.
+    $(window).load(function() {
+      function onresize(){
+        $('#mainimg').removeAttr("style");
+        $('#mainimg img').removeClass("img-responsive").removeAttr("height");
+        if($(window).width()>850){
+          if($('#mainimg img').height() > $(window).height() - $('nav').outerHeight() - 70){
+            var hei = $(window).height() - $('nav').outerHeight() - 70
+            $('#mainimg img').attr('height', hei+'px')
+          }else{
+            var pad = $(window).height() - $('nav').outerHeight() - $('#mainimg img').height() - 50
+            $('#mainimg').css('padding-top', pad+'px')
+          }
+        }else{
+          $("#mainimg img").addClass("img-responsive");
+        }
+      }
+
+      onresize();
+      $(window).on('resize', onresize)
+    });
