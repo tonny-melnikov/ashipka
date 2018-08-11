@@ -18,20 +18,20 @@ exports.captcha = (req, res, next) => {
         const google = JSON.parse( data );
 
         if (!google.success) {
-          debug('Recaptcha разгадана не верно!');
+          console.log('Recaptcha разгадана не верно!');
           res.redirect('back');
         } else {
-          debug( google );
+          console.log( google );
           next();
         }
       });
     })
     .on('error', (err) => {
-      debug('Recaptcha ошибка соединения с google!');
+      console.log('Recaptcha ошибка соединения с google!');
       res.redirect('back');
     });
   } else {
-    debug('Recaptcha не введена!');
+    console.log('Recaptcha не введена!');
     res.redirect('back');
   }
 };

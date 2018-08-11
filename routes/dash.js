@@ -7,6 +7,7 @@ router.use('*', authentication.isAuthenticated, (req, res, next) => {
   next();
 });
 
-// router.get('/', MainController.home.get);
+router.get('/', DashController.home.get);
+router.get('/doprobiv', DashController.doprobiv.get);
 
 module.exports = router;

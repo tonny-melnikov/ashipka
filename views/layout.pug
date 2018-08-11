@@ -27,7 +27,7 @@ html(lang="ru")
           ul.nav.navbar-nav
             if imauth
               li
-                a(href="/spot")
+                a(href="/dash")
                   span.glyphicon.glyphicon-folder-open(aria-hidden="true")
           ul.nav.navbar-nav.navbar-right
             if imauth
@@ -43,8 +43,10 @@ html(lang="ru")
     section#title
       .container
         h1= h1
-    .container
+    main.container
       .row#main
         block content
     script(src="/javascripts/bootstrap.js")
     script(src="/javascripts/scripts.js")
+    if script
+      script(src= script)

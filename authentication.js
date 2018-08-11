@@ -7,21 +7,21 @@ try {
   console.log(e);
 }
 
-passport.serializeUser((user, callback) => {
-  callback( null, user );
+passport.serializeUser((user, done) => {
+  done( null, user );
 });
 
-passport.deserializeUser((user, callback) => {
-  callback( null, user );
+passport.deserializeUser((user, done) => {
+  done( null, user );
 });
 
 // passport.use(new LocalStrategy({ usernameField: 'email' },
 passport.use(new LocalStrategy(
   {
-    usernameField: 'login',
+    usernameField: 'username',
     passwordField: 'password',
   },
-  (email, password, done) => {
+  (username, password, done) => {
     const { users } = jsondb;
       const filtred = users.filter( ( x ) => x.username === username );
 
@@ -29,11 +29,11 @@ passport.use(new LocalStrategy(
           const user = filtred[ 0 ];
 
           if ( user.password !== password ) {
-              return callback( null, false );
+              return done( null, false );
           }
-          return callback( null, user );
+          return done( null, user );
       }
-      return callback( null, false );
+      return done( null, false );
 }));
 
 exports.isAuthenticated = (req, res, next) => {
